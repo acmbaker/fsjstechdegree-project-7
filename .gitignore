@@ -104,6 +104,9 @@ dist
 .temp
 .cache
 
+#more
+.src/Config.js
+
 # Serverless directories
 .serverless/
 
