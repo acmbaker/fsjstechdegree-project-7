@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Nav from './components/Nav';
-import NotFound from './components/NotFound';
-import Photo from './components/Photo'
+import PhotoList from './components/PhotoList'
 import Key from './Config.js';
 import axios from 'axios';
 
@@ -12,20 +11,31 @@ export default class App extends Component {
     super();
     this.state = {
         images: [],
-        searchTerm: 'hello'
+        searchTerm: 'birds'
     };
   }
 
   componentDidMount() {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Key}&text=${this.state.searchTerm}&per_page=24&format=json&nojsoncallback=1`)
-        .then(responseData => {this.setState({images: responseData.photos});});
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Key}&text=${this.state.searchTerm}&per_page=24&format=json&nojsoncallback=1`)    
+      .then(responseData => {this.setState({images: responseData.data.photos.photo});});
+  }
+
+  componentDidUpdate() {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Key}&text=${this.state.searchTerm}&per_page=24&format=json&nojsoncallback=1`)    
+      .then(responseData => {this.setState({images: responseData.data.photos.photo});});
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let term = document.querySelector('input').value.toString();
+    this.setState({searchTerm: term});
   }
 
   render() {
     return (
       <div class="container">
         
-        <form class="search-form">
+        <form class="search-form" onSubmit={e => this.handleSubmit(e)}>
           <input type="search" name="search" placeholder="Search" required/>
           <button type="submit" class="search-button">
             <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -40,12 +50,12 @@ export default class App extends Component {
         </nav>
         
         <div class="photo-container">
-          <h2>Results</h2>
-          <Photo />
-          <NotFound />
+          <h2>Results for {this.state.searchTerm}</h2>
+          <PhotoList data={this.state.images} />
         </div>
 
       </div>
     );
   }
+
 }

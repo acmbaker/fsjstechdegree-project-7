@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
+    NavLink,
     Switch,
     Route,
     Link
@@ -12,10 +13,10 @@ class Nav extends Component {
         return (
         <Router>
             <ul>
-                <Link to="/dancing">Dancing</Link>
-                <Link to="/cars">Cars</Link>
-                <Link to="/computers">Computers</Link>
-                <Link to="/ferrari">Ferrari</Link>
+                <li><Link to="/dancing">Dancing</Link></li>
+                <li><Link to="/cars">Cars</Link></li>
+                <li><Link to="/computers">Computers</Link></li>
+                <li><Link to="/ferrari">Ferrari</Link></li>
           </ul>
         </Router>
         );
