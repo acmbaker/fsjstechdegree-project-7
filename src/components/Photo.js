@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import Key from '../Config.js';
+import axios from 'axios';
 
 class Photo extends Component {
 
     render() {
         return (
         <ul>
-            <li>
-              <img src="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg" alt="" />
-            </li>
+            {/* <li>
+              <img src={`https://live.staticflickr.com/${this.state.images.photos.photo[1].server-id}/${this.state.images.photos.photo[1].images[1].id}_${Key}_${this.state.images[1].size-suffix}.jpg`} alt="" />
+            </li> */}
             <li>
               <img src="https://farm5.staticflickr.com/4342/36338751244_316b6ee54b.jpg" alt="" />
             </li>

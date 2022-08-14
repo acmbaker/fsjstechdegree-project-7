@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 class Nav extends Component {
     
     render() {
         return (
+        <Router>
             <ul>
-                <li><a href='#'>Cats</a></li>
-                <li><a href='#'>Dogs</a></li>
-                <li><a href='#'>Computers</a></li>
+                <Link to="/dancing">Dancing</Link>
+                <Link to="/cars">Cars</Link>
+                <Link to="/computers">Computers</Link>
+                <Link to="/ferrari">Ferrari</Link>
           </ul>
+        </Router>
         );
     }
 }
