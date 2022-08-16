@@ -11,18 +11,23 @@ export default class App extends Component {
     super();
     this.state = {
         images: [],
-        searchTerm: 'birds'
+        searchTerm: 'Dancing, Cars, Computers, Ferrari'
     };
   }
 
-  componentDidMount() {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Key}&text=${this.state.searchTerm}&per_page=24&format=json&nojsoncallback=1`)    
+  Search() {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Key}&tags=${this.state.searchTerm}&safe_search=1&content_type=1&media=photos&per_page=24&format=json&nojsoncallback=1`)    
       .then(responseData => {this.setState({images: responseData.data.photos.photo});});
   }
 
-  componentDidUpdate() {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Key}&text=${this.state.searchTerm}&per_page=24&format=json&nojsoncallback=1`)    
-      .then(responseData => {this.setState({images: responseData.data.photos.photo});});
+  componentDidMount() {
+    this.Search();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.searchTerm !== this.state.searchTerm) {
+      this.Search();
+    }
   }
 
   handleSubmit(e) {
@@ -35,7 +40,7 @@ export default class App extends Component {
     return (
       <div class="container">
         
-        <form class="search-form" onSubmit={e => this.handleSubmit(e)}>
+        <form class="search-form" onSubmit={e => this.handleSubmit(e)} action="/:input">
           <input type="search" name="search" placeholder="Search" required/>
           <button type="submit" class="search-button">
             <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">

@@ -8,7 +8,7 @@ import {
   } from "react-router-dom";
 
 class Nav extends Component {
-    
+
     render() {
         return (
         <Router>
