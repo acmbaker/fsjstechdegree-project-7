@@ -31,7 +31,13 @@ export default class App extends Component {
     if (prevState.searchTerm !== this.state.searchTerm) {
       this.Search();
     }
+
+    if (this.state.loading) {
+
+    }
   }
+
+  
 
   handleSubmit(e) {
     e.preventDefault();
