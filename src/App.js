@@ -11,13 +11,16 @@ export default class App extends Component {
     super();
     this.state = {
         images: [],
-        searchTerm: 'Dancing, Cars, Computers, Ferrari'
+        searchTerm: 'Dancing, Cars, Computers, Ferrari',
+        loading: true
     };
   }
 
   Search() {
+    this.setState({loading: true});
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Key}&tags=${this.state.searchTerm}&safe_search=1&content_type=1&media=photos&per_page=24&format=json&nojsoncallback=1`)    
-      .then(responseData => {this.setState({images: responseData.data.photos.photo});});
+      .then(responseData => {this.setState({images: responseData.data.photos.photo});})
+      .finally(() => this.setState({loading: false}));
   }
 
   componentDidMount() {
@@ -37,10 +40,11 @@ export default class App extends Component {
   }
 
   render() {
+    console.log(this.state.loading);
     return (
       <div class="container">
-        
-        <form class="search-form" onSubmit={e => this.handleSubmit(e)} action="/:input">
+  
+        <form class="search-form" onSubmit={e => this.handleSubmit(e)}>
           <input type="search" name="search" placeholder="Search" required/>
           <button type="submit" class="search-button">
             <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
