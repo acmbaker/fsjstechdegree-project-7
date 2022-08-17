@@ -13,10 +13,10 @@ class Nav extends Component {
         return (
         <Router>
             <ul>
-                <li><Link to="/dancing">Dancing</Link></li>
-                <li><Link to="/cars">Cars</Link></li>
-                <li><Link to="/computers">Computers</Link></li>
-                <li><Link to="/ferrari">Ferrari</Link></li>
+                <li><NavLink to="/dancing" searchKey="Dancing">Dancing</NavLink></li>
+                <li><NavLink to="/cars" searchKey="Cars">Cars</NavLink></li>
+                <li><NavLink to="/computers" searchKey="Computers">Computers</NavLink></li>
+                <li><NavLink to="/ferrari" searchKey="Ferrari">Ferrari</NavLink></li>
           </ul>
         </Router>
         );

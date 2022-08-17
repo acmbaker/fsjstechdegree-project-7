@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Nav from './components/Nav';
-import PhotoList from './components/PhotoList'
+import PhotoList from './components/PhotoList';
 import Key from './Config.js';
 import axios from 'axios';
 
@@ -37,8 +37,6 @@ export default class App extends Component {
     }
   }
 
-  
-
   handleSubmit(e) {
     e.preventDefault();
     let term = document.querySelector('input').value.toString();
@@ -46,7 +44,7 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.loading);
+  
     return (
       <div class="container">
   
