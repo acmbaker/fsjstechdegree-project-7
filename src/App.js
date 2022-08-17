@@ -5,11 +5,7 @@ import Key from "./Config.js";
 import axios from "axios";
 import { SearchForm } from "./components/searchForm";
 import { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NotFound from "./components/NotFound";
 
 function App() {
@@ -35,9 +31,9 @@ function App() {
     searchQuery(searchTerm);
   }, []);
 
-
   return (
     <div className="container">
+      <h1>Unit 7, Flickr Gallery App</h1>
       <Router>
         <SearchForm onSearch={searchQuery} />
         <nav className="main-nav">
@@ -45,7 +41,7 @@ function App() {
         </nav>
 
         <h2>Results for {searchTerm}</h2>
-        
+
         <div className="photo-container">
           {loadingData ? (
             <h1>Loading Data...</h1>
@@ -58,7 +54,7 @@ function App() {
                   <PhotoList data={images} performSearch={searchQuery} />
                 }
               />
-                            <Route
+              <Route
                 path="/"
                 exact
                 element={

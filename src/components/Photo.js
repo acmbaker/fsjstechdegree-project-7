@@ -1,4 +1,4 @@
-const Photo = ({url}) => (
+const Photo = ({ url }) => (
   <li>
     <img src={url} alt="" />
   </li>
