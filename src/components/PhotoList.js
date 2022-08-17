@@ -1,18 +1,24 @@
-import React, { Component } from 'react';
 import Photo from './Photo';
 import NotFound from './NotFound.js';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
-const PhotoList = props => {
+const PhotoList = ({data, performSearch}) => {
 
-  const results = props.data;
-  let images = results.map((image, index) => 
-    <Photo url={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_b.jpg`} key={index} />
-    );
+  const { search } = useParams();
 
-    if (results.length !== 0) {
+  useEffect(() => {
+    if (search) {
+      performSearch(search);
+    }
+  }, [search]);
+
+    if (data.length !== 0) {
       return (
         <ul>
-          {images}
+            {data.map((image, index) => 
+    <Photo url={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_b.jpg`} key={index} />
+    )};
         </ul>
       );
     } else {
